@@ -114,7 +114,7 @@ export const fetchMovieDetails = async (
   const data = await response.json();
 
   // Transform the response data into the MovieDetails type
-  //NOTE: I set it to support null because some movie missing field
+  //NOTE: I set it to support null because some movie have missing field
   const transformedData: MovieDetails = {
     title: data.short.name ?? "",
     imgPoster: data.short.image ?? "",
