@@ -1,3 +1,29 @@
+//NOTE: I didnt use .env file for this URL because it is a public API
+
+// Define the types for movie actors and directors
+type MovieActor = {
+  name: string;
+  url: string;
+};
+
+type MovieDirector = {
+  name: string;
+  url: string;
+};
+
+// Define the type for movie details
+type MovieDetails = {
+  title: string;
+  imgPoster: string;
+  description: string;
+  genre: string[];
+  ratingValue: any;
+  ratingCount: number;
+  actors: string[];
+  director: string[];
+  keywords: string;
+};
+
 // Function to fetch random movies
 export const fetchRandomMovies = async () => {
   // Manually generate a random movie since the API doesn't have an endpoint for that
