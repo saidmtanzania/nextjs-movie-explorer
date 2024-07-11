@@ -1,3 +1,4 @@
+import MovieList from "@/components/MovieList";
 import SearchBar from "@/components/SearchBar";
 
 export default function Home() {
@@ -10,6 +11,7 @@ export default function Home() {
         </div>
         <SearchBar />
       </div>
+      <MovieList />
     </>
   );
 }
