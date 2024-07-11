@@ -15,7 +15,6 @@ const MoviePage = ({ params }: any) => {
     }
   }, [params.id]);
 
-  console.log(selectedMovie);
   return (
     <>
       <div className="hero-content text-center m-auto">
