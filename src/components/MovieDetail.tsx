@@ -2,6 +2,7 @@
 import React from "react";
 import Image from "next/image";
 import Link from "next/link";
+import { useMovieContext } from "@/context/MovieContext";
 
 interface Movie {
   title: string;
@@ -20,7 +21,10 @@ interface MovieDetailProps {
 }
 
 const MovieDetail: React.FC<MovieDetailProps> = ({ movie }) => {
-  const handleBackClick = () => {};
+  const { clearSelectedMovie } = useMovieContext();
+  const handleBackClick = () => {
+    clearSelectedMovie();
+  };
   return (
     <section className="overflow-hidden items-center sm:grid sm:grid-cols-2 sm:items-center max-w-screen-lg sm:absolute sm:top-28">
       <Image
