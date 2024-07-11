@@ -96,3 +96,39 @@ export const searchMovies = async (query: string) => {
   // Return the first 10 movies
   return movies.slice(0, 10);
 };
+// Function to fetch movie details based on IMDb ID
+export const fetchMovieDetails = async (
+  imdbID: string
+): Promise<MovieDetails> => {
+  // Fetch data from the API using the IMDb ID as the parameter
+  const response = await fetch(
+    `https://search.imdbot.workers.dev/?tt=${imdbID}`
+  );
+
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error("Failed to fetch movie details");
+  }
+
+  // Parse the response data as JSON
+  const data = await response.json();
+
+  // Transform the response data into the MovieDetails type
+  //NOTE: I set it to support null because some movie missing field
+  const transformedData: MovieDetails = {
+    title: data.short.name ?? "",
+    imgPoster: data.short.image ?? "",
+    description: data.short.description ?? "",
+    genre: data.short.genre ?? [],
+    ratingValue: data.short.aggregateRating?.ratingValue ?? null,
+    ratingCount: data.short.aggregateRating?.ratingCount ?? 0,
+    keywords: data.short.keywords ?? "",
+    actors: data.short.actor?.map((actor: MovieActor) => actor.name) ?? [],
+    director:
+      data.short.director?.map((director: MovieDirector) => director.name) ??
+      [],
+  };
+
+  // Return the transformed movie details
+  return transformedData;
+};
