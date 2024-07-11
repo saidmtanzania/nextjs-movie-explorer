@@ -45,3 +45,28 @@ export const fetchRandomMovies = async () => {
   // Return the first 10 movies
   return movies.slice(0, 10);
 };
+
+// Function to search movies based on a query
+export const searchMovies = async (query: string) => {
+  // Fetch data from the API using the query as the search parameter
+  const response = await fetch(`https://search.imdbot.workers.dev/?q=${query}`);
+
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error("Failed to fetch movies");
+  }
+
+  // Parse the response data as JSON
+  const data = await response.json();
+
+  // Extract the relevant movie details from the response data
+  const movies =
+    data.description?.map((movie: any) => ({
+      title: movie["#TITLE"],
+      imdbID: movie["#IMDB_ID"],
+      imgPoster: movie["#IMG_POSTER"],
+    })) ?? [];
+
+  // Return the first 10 movies
+  return movies.slice(0, 10);
+};
