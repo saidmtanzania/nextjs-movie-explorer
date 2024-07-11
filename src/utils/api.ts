@@ -1,0 +1,47 @@
+// Function to fetch random movies
+export const fetchRandomMovies = async () => {
+  // Manually generate a random movie since the API doesn't have an endpoint for that
+  const randomMovies = [
+    "Avengers: Endgame",
+    "The Dark Knight",
+    "Inception",
+    "Pulp Fiction",
+    "Fight Club",
+    "The Shawshank Redemption",
+    "The Godfather",
+    "Interstellar",
+    "The Matrix",
+    "Goodfellas",
+    "Spider",
+    "Rick and morty",
+    "Titanic",
+  ];
+
+  // Generate a random index to select a random movie from the array
+  const randomIndex = Math.floor(Math.random() * randomMovies.length);
+  const randomMovie = randomMovies[randomIndex];
+
+  // Fetch data from the API using the random movie as the query parameter
+  const response = await fetch(
+    `https://search.imdbot.workers.dev/?q=${randomMovie}`
+  );
+
+  // Check if the response is successful
+  if (!response.ok) {
+    throw new Error("Failed to fetch random movies");
+  }
+
+  // Parse the response data as JSON
+  const data = await response.json();
+
+  // Extract the relevant movie details from the response data
+  const movies =
+    data.description?.map((movie: any) => ({
+      title: movie["#TITLE"],
+      imdbID: movie["#IMDB_ID"],
+      imgPoster: movie["#IMG_POSTER"],
+    })) ?? [];
+
+  // Return the first 10 movies
+  return movies.slice(0, 10);
+};
