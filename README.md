@@ -11,6 +11,7 @@ A web application built with Next.js and TypeScript that allows users to search 
 ## Requirements
 
 - Node >=`20`
+- NextJS >=`14`
 
 ## Setup Instructions
 
