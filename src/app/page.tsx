@@ -9,7 +9,6 @@ export default function Home() {
         <p className="pt-1">Welcome🤗</p>
         <SearchBar />
       </div>
-
       <MovieList />
     </>
   );
