@@ -53,7 +53,7 @@ const SearchBar: React.FC<SearchBarProps> = () => {
         </span>
       </>
       <span className="absolute inset-y-0 end-0 grid w-10 place-content-center">
-        <div className="tooltip" data-tip="refresh">
+        <div className="sm:tooltip" data-tip="refresh">
           <SlRefresh
             onClick={handleRefresh}
             className="text-gray-600 hover:text-gray-700 dark:text-gray-400 dark:hover:text-gray-300 cursor-pointer"
