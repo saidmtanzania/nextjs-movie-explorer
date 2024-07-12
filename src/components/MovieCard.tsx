@@ -11,7 +11,7 @@ interface MovieCardProps {
 
 const MovieCard: React.FC<MovieCardProps> = ({ title, imageUrl, imdb }) => {
   return (
-    <div className="tooltip" data-tip={title}>
+    <div className="sm:tooltip" data-tip={title}>
       <Link
         href={`/movie/${imdb}`}
         className="block rounded-lg p-1 shadow-sm shadow-indigo-100"
